@@ -9,6 +9,8 @@ interface ChildInterface {
 export const ActivityCard = (child: ChildInterface) => {
   const { data, spotify } = child;
 
+  console.log(data);
+
   if (spotify !== undefined) {
     const [totalTime, setTotalTime] = useState<number>(0);
     const [currentTime, setCurrentTime] = useState<number>(0);
@@ -85,6 +87,24 @@ export const ActivityCard = (child: ChildInterface) => {
         </div>
       </>
     );
+  } else if (data.id === "custom") {
+    return (
+      <>
+        <div className="w-full p-3 flex gap-2">
+          <div>
+            <p className="text-xl">{data.name}</p>
+            <p className="text-md opacity-70">
+              {data.emoji !== undefined ? (
+                <span className="emoji mr-1">{data.emoji.name}</span>
+              ) : (
+                ""
+              )}
+              <span>{data.state}</span>
+            </p>
+          </div>
+        </div>
+      </>
+    );
   } else {
     const regex = /^mp:external\/.*$/g;
 
@@ -103,7 +123,7 @@ export const ActivityCard = (child: ChildInterface) => {
             <img
               src={`https://media.discordapp.net/${data.assets?.large_image.replace(
                 "mp:",
-                ""
+                "",
               )}`}
               className="aspect-square w-25 rounded"
             />

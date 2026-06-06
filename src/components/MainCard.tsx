@@ -80,15 +80,17 @@ export const MainCard = (child: childInterface) => {
           </div>
         </div>
         {
-          userData.discord_user.collectibles.nameplate === null || userData.discord_user.collectibles.nameplate === undefined 
-          ? '' 
-          : <video
-              autoPlay
-              muted
-              loop
-              className="absolute top-0 left-0 z-1 h-full object-cover! object-right! rounded-xl" 
-              src={`https://cdn.discordapp.com/assets/collectibles/${userData?.discord_user.collectibles.nameplate.asset}asset.webm`} 
-            />
+          userData.discord_user.collectibles === null || userData.discord_user.collectibles === undefined
+          ? ''
+          : userData.discord_user.collectibles.nameplate === null || userData.discord_user.collectibles.nameplate === undefined 
+            ? '' 
+            : <video
+                autoPlay
+                muted
+                loop
+                className="absolute top-0 left-0 z-1 h-full object-cover! object-right! rounded-xl" 
+                src={`https://cdn.discordapp.com/assets/collectibles/${userData?.discord_user.collectibles.nameplate.asset}asset.webm`} 
+              />
         }
       </div>
       {/* Body Container */}
